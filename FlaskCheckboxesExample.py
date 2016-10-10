@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 import json
+import pprint
 
 conf = json.load(open('etc/conf.json'))
 host = conf['host']
@@ -44,6 +45,7 @@ def home_form():
 def process_form():
     formData = request.form.getlist('drink_type[]') if request.method == "GET" else request.form.getlist('drink_type[]')
     response = "Form Contents <pre>%s</pre>" % "<br/>\n".join(formData)
+    pprint.pprint(formData)
     return response
 
 # use debug false when running on host other than localhost
