@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from pprint import pprint
 import json
 
 conf = json.load(open('etc/conf.json'))
@@ -43,6 +44,7 @@ def home_form():
 @app.route("/process", methods = ["GET", "POST"] )
 def process_form():
     formData = request.form.getlist('drink_type[]') if request.method == "GET" else request.form.getlist('drink_type[]')
+    pprint(formData)
     response = "Form Contents <pre>%s</pre>" % "<br/>\n".join(formData)
     return response
 
